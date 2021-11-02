@@ -18,18 +18,20 @@ $server = New-AzSqlServer -ResourceGroupName $resourceGroupName `
     -Location $location `
     -SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $adminSqlLogin, $(ConvertTo-SecureString -String $password -AsPlainText -Force))
 # Create a server firewall rule that allows access from the specified IP range and all Azure services
-$serverFirewallRule = New-AzSqlServerFirewallRule `
-    -ResourceGroupName $resourceGroupName `
-    -ServerName $serverName `
-    -FirewallRuleName "AllowedIPs" `
-    -StartIpAddress $ipAddress -EndIpAddress $ipAddress 
-$allowAzureIpsRule = New-AzSqlServerFirewallRule `
-    -ResourceGroupName $resourceGroupName `
-    -ServerName $serverName `
-    -AllowAllAzureIPs
+    #autoriser notre adresse ip spécifié
+    $serverFirewallRule = New-AzSqlServerFirewallRule `
+        -ResourceGroupName $resourceGroupName `
+        -ServerName $serverName `
+        -FirewallRuleName "AllowedIPs" `
+        -StartIpAddress $ipAddress -EndIpAddress $ipAddress 
+        #autorisé tout les serivces azures a acceder a notre resource.
+    $allowAzureIpsRule = New-AzSqlServerFirewallRule `
+        -ResourceGroupName $resourceGroupName `
+        -ServerName $serverName `
+        -AllowAllAzureIPs
 # Create a database
-$database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
-    -ServerName $serverName `
-    -DatabaseName $databaseName `
-    -Edition "GeneralPurpose" -Vcore 4 -ComputeGeneration "Gen5" `
-    -ComputeModel Serverless -MinimumCapacity 0.5
+    $database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
+        -ServerName $serverName `
+        -DatabaseName $databaseName `
+        -Edition "GeneralPurpose" -Vcore 4 -ComputeGeneration "Gen5" `
+        -ComputeModel Serverless -MinimumCapacity 0.5
