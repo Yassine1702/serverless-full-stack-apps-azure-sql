@@ -1,0 +1,10 @@
+{
+    "printWidth":120,
+    "npx pre": true,
+    "semi": true,
+    "tableWidth": 2,
+    "trailingComma": "es5",
+    "arrowsParens": "always",
+    "bracketSpacing": true
+
+}
