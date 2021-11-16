@@ -9,6 +9,7 @@ module.exports = {
     ecmaVersion: 13,
   },
   rules: {
-    
+    radix: 'off',
+    'func-names': 'off',
   },
 };
