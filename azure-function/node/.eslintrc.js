@@ -11,6 +11,6 @@ module.exports = {
   rules: {
     radix: 'off',
     'func-names': 'off',
-     'linebreak-style' :'off',
+    'linebreak-style' :'off',
   },
 };
